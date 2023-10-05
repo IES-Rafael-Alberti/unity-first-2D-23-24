@@ -6,12 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class KillZone : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player")) SceneManager.LoadScene(0);
-    }
-
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player")) SceneManager.LoadScene(0);
     }

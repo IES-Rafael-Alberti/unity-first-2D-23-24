@@ -690,8 +690,10 @@ GameObject:
   - component: {fileID: 108278149}
   - component: {fileID: 108278150}
   - component: {fileID: 108278151}
+  - component: {fileID: 108278152}
+  - component: {fileID: 108278153}
   m_Layer: 0
-  m_Name: CharacterSheet_0
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -784,7 +786,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &108278149
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -792,7 +794,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108278145}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -823,6 +825,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f4823632a6197428ae28a37fb9c9c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7734706977258882793, guid: e584c2a74396e8f4995a5471e251b829, type: 3}
+  bulletForce: {x: 7, y: 3}
+  bulletOffset: 1
   speed: 0.02
   jumpForce: 5
   jumpPrecision: 0.3
@@ -847,6 +852,65 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!70 &108278152
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108278145}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.045235157, y: -1}
+  m_Size: {x: 1.230999, y: 2}
+  m_Direction: 0
+--- !u!60 &108278153
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108278145}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 4}
+    newSize: {x: 2, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.12625694, y: 0.0055031776}
+      - {x: -0.61736536, y: 0.0138762}
+      - {x: -0.61174154, y: -0.58790755}
+      - {x: -0.5378103, y: -0.8396766}
+      - {x: -0.3618579, y: -1.1047739}
+      - {x: -0.610538, y: -1.3555526}
+      - {x: -0.4432521, y: -1.9853488}
+      - {x: 0.4390688, y: -1.9938769}
+      - {x: 0.503211, y: -1.7859563}
+      - {x: 0.62639236, y: -1.6263926}
+      - {x: 0.63215876, y: -1.3749673}
+      - {x: 0.21422768, y: -0.92665756}
+      - {x: 0.28069115, y: -0.76991296}
+      - {x: 0.38729095, y: -0.7449961}
+      - {x: 0.38133383, y: -0.25857472}
+      - {x: 0.25413465, y: -0.24581075}
+      - {x: 0.25046492, y: -0.12347579}
+      - {x: 0.12845469, y: -0.12154508}
 --- !u!1 &202132229
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,5 @@
+using System.Collections;
+using UnityEditor.Search;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -5,6 +7,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpPrecision;
+    [SerializeField] private GameObject gun;
+    [SerializeField] private LineRenderer laser;
     
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
@@ -27,6 +31,9 @@ public class PlayerManager : MonoBehaviour
             if(Mathf.Abs(_rigidbody.velocity.y) <= jumpPrecision) _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
         
+        // Shoot
+        if (Input.GetButtonDown("Fire1")) StartCoroutine(Shoot());
+        
         // If no horizontal movement stop running animation
         if (Input.GetAxis("Horizontal") == .0f)
         {
@@ -36,11 +43,29 @@ public class PlayerManager : MonoBehaviour
         
         // Activate running animation
         _animator.SetBool("isRunning", true);
+        //_rigidbody.velocity = Vector2.right * (Input.GetAxis("Horizontal") * speed);
         // Calculate new position
-        var actualPosition = transform.position;
+        var actualPosition = _rigidbody.position;
         actualPosition.x += Input.GetAxis("Horizontal") * speed;
-        transform.position = actualPosition;
+        _rigidbody.position = actualPosition;
         // set sprite direction
         _spriteRenderer.flipX = Input.GetAxis("Horizontal") < .0f;
+    }
+
+    IEnumerator Shoot() {
+        Vector3 actualShootOffset = gun.transform.position - transform.position;
+        actualShootOffset.x *= _spriteRenderer.flipX ? -1 : 1;
+        Vector3 shootDirection = _spriteRenderer.flipX ? Vector3.left : Vector3.right;
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position + actualShootOffset, shootDirection);
+        laser.SetPosition(0, transform.position + actualShootOffset );
+        laser.SetPosition(1, transform.position + actualShootOffset + shootDirection*100);
+        
+        if (hitInfo) {
+            laser.SetPosition(1, hitInfo.point);
+        }
+        
+        laser.enabled = true;
+        yield return new WaitForSeconds(0.09f);
+        laser.enabled = false;
     }
 }

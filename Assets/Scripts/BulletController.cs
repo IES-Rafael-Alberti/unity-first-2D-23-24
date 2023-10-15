@@ -15,8 +15,8 @@ public class BulletController : MonoBehaviour {
         DestroyThis();
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
+    private void OnCollisionEnter2D(Collision2D other) {
+        GameManager.Instance.ShowPopup(transform.position, "15");
         DestroyThis();
     }
     IEnumerator Disapear()
@@ -29,4 +29,5 @@ public class BulletController : MonoBehaviour {
         Instantiate(shatterEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
+
 }

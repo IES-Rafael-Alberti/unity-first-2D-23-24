@@ -161,3 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc227fe43970c744aae5283512e96d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shatterEffect: {fileID: 5372519712036574135, guid: 661f9fa9821889f43bba98c9519957a7, type: 3}

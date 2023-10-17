@@ -11,6 +11,7 @@ public class HUDManager : MonoBehaviour {
     private Image _image;
     // Start is called before the first frame update
     void Start() {
+        // TODO: Adjdust size to resolution
         _image = GetComponent<Image>();
     }
 

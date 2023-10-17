@@ -16,7 +16,15 @@ public class PlatformController : MonoBehaviour {
         pathObjects.Insert(0, gameObject);
         _numPoints = pathObjects.Count;
         if (_numPoints == 0) enabled = false;
+        // with loops
+        // _pathList = new List<Vector3>();
+        // foreach (var pathObject in pathObjects)
+        // {
+        //     _pathList.Add(pathObject.transform.position);
+        // }
+        // whitout loops but with lambdas
         _pathList = pathObjects.Select(x => x.transform.position).ToList();
+        //_pathList = pathObjects.Select(ExtractPosition).ToList();
         _actualPoint = 0;
     }
 
@@ -28,9 +36,15 @@ public class PlatformController : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
+        // TODO: Detect collisions only in platform surface
         if (other.gameObject.CompareTag("Player")) other.gameObject.transform.parent = transform;
     }
     private void OnCollisionExit2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")) other.gameObject.transform.parent = null;
+    }
+
+    private Vector3 ExtractPosition(GameObject x)
+    {
+        return x.transform.position;
     }
 }

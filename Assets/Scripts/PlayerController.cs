@@ -25,8 +25,6 @@ public class PlayerController: MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     private Rigidbody2D _rigidbody;
-    private bool _canBullet;
-    private bool _canLaser;
     
     
     // Start is called before the first frame update
@@ -47,12 +45,12 @@ public class PlayerController: MonoBehaviour
         {
             if(Mathf.Abs(_rigidbody.velocity.y) <= jumpPrecision) _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
-        if (_canLaser && Input.GetButtonDown("Fire1"))
+        if (GameManager.Instance.player.CanShoot(0) && Input.GetButtonDown("Fire1"))
         {
             StartCoroutine(Shoot1());
             StartCoroutine(Shoot1CD());
         }
-        if (_canBullet && Input.GetButtonDown("Fire2"))
+        if (GameManager.Instance.player.CanShoot(1) && Input.GetButtonDown("Fire2"))
         {
            Shoot2();
            StartCoroutine(Shoot2CD());
@@ -87,7 +85,7 @@ public class PlayerController: MonoBehaviour
         if (hitInfo) {
             laser.SetPosition(1, hitInfo.point);
             Instantiate(shatterEffect, hitInfo.point, Quaternion.identity);
-            GameManager.Instance.ShowPopup(hitInfo.point, "3");
+            GameManager.Instance.ShowPopup(hitInfo.point, 3);
         }
         
         laser.enabled = true;
@@ -96,9 +94,9 @@ public class PlayerController: MonoBehaviour
     }
 
     IEnumerator Shoot1CD() {
-        _canLaser = false;
+        GameManager.Instance.player.SetShoot(0, false);
         yield return new WaitForSeconds(laserCooldown);
-        _canLaser = true;
+        GameManager.Instance.player.SetShoot(0, true);
     }
     
     void Shoot2()
@@ -108,14 +106,9 @@ public class PlayerController: MonoBehaviour
         newBullet.GetComponent<Rigidbody2D>().AddForce(directedBulletForce, ForceMode2D.Impulse);
     }
     IEnumerator Shoot2CD() {
-        _canBullet = false;
+        GameManager.Instance.player.SetShoot(1, false);
         yield return new WaitForSeconds(bulletCooldown);
-        _canBullet = true;
-    }
-
-    public bool CanShoot(int index) {
-        if (index == 0) return _canLaser;
-        return _canBullet;
+        GameManager.Instance.player.SetShoot(1, true);
     }
     
 }

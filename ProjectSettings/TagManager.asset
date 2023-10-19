@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Platform
+  - Door
   layers:
   - Default
   - TransparentFX

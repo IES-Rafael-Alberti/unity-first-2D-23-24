@@ -10,13 +10,9 @@ public class BulletController : MonoBehaviour {
         StartCoroutine(Disapear());
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        DestroyThis();
-    }
-
     private void OnCollisionEnter2D(Collision2D other) {
-        GameManager.Instance.ShowPopup(transform.position, "15");
+        if(other.gameObject.CompareTag("Door")) return;
+        GameManager.Instance.ShowPopup(transform.position, 15);
         DestroyThis();
     }
     IEnumerator Disapear()

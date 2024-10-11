@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DoorController : MonoBehaviour
-{
+public class DoorController : MonoBehaviour {
+    public int index;
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Player")) SceneManager.LoadScene(1);
+        if(other.gameObject.CompareTag("Player")) SceneManager.LoadScene(index);
     }
 }

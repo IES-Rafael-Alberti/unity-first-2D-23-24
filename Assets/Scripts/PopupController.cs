@@ -10,7 +10,7 @@ public class PopupController : MonoBehaviour {
     [SerializeField] private float fade;
 
     public string text;
-    //[SerializeField] private Canvas canvas;
+    //[SerializeField] private Canvas myCanvas;
 
     private Vector3 _destiny;
 
@@ -20,7 +20,7 @@ public class PopupController : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         _destiny = transform.position + Vector3.up * distance;
-        //transform.SetParent(canvas.transform);
+        //transform.SetParent(myCanvas.transform);
         transform.localScale = Vector3.one;
         _text = GetComponent<TextMeshPro>();
         _text.text = text;

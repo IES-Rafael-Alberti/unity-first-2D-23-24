@@ -10,13 +10,14 @@ public class HUDManager : MonoBehaviour {
 
     private Image _image;
     // Start is called before the first frame update
-    void Start() {
-        // TODO: Adjdust size to resolution
+    private void Start() {
+        // TODO: Adjust size to resolution
         _image = GetComponent<Image>();
     }
 
     // Update is called once per frame
-    void Update() {
+    private void Update() {
+        // set hud icon color (enabled/disabled)  
         _image.color = GameManager.Instance.player.CanShoot(weaponIndex) ? enabledColor : disabledColor; 
     }
 }

@@ -19,6 +19,7 @@ public class PlayerController: MonoBehaviour
     [SerializeField] private float laserSize;
     [SerializeField] private float laserDuration;
     [SerializeField] private float laserCooldown;
+    [SerializeField] private int laserDamage = 3;
     
     [SerializeField] private GameObject shatterEffect;
     
@@ -85,7 +86,7 @@ public class PlayerController: MonoBehaviour
         if (hitInfo) {
             laser.SetPosition(1, hitInfo.point);
             Instantiate(shatterEffect, hitInfo.point, Quaternion.identity);
-            GameManager.Instance.ShowPopup(hitInfo.point, 3);
+            GameManager.Instance.ShowPopup(hitInfo.point, laserDamage);
         }
         
         laser.enabled = true;

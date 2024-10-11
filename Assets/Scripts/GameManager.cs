@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager Instance;
 
     private void Awake() {
-        if (Instance != null) {
+        if (Instance is not null) {
             Destroy(this);
             return;
         }

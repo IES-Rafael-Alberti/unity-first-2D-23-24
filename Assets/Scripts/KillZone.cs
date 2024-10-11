@@ -8,6 +8,7 @@ public class KillZone : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // restart scene when player dead
         if (other.gameObject.CompareTag("Player")) SceneManager.LoadScene(0);
     }
 }
